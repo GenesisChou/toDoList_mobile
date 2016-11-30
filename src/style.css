@@ -1,0 +1,135 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul,
+li {
+    list-style: none;
+}
+h4{
+  text-align: center;
+  color:gray;
+  padding: 0;
+  margin:15px;
+}
+body {
+    font-family: 'Microsoft Yahei';
+    background-color: rgb(243,243,243);
+}
+
+header {
+    height: 100px;
+    padding: 25px;
+    position: relative;
+    background-color: #25b99a;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(44, 62, 80, .15);
+}
+
+header input {
+    height: 50px;
+    width: 100%;
+    text-indent: 20px;
+    padding-right: 60px;
+    color: #fff;
+    font-size: 16px;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-color: rgba(255, 255, 255, .2);
+}
+
+header input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, .5);
+}
+
+header button {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    border: 0;
+    outline: 0;
+    border-radius: 25px;
+    background-color: #fff;
+}
+
+header button:before {
+    display: block;
+    content: '+';
+    color: #333;
+    font-size: 20px;
+}
+
+ul.list {
+    width: 100%;
+    padding: 15px;
+}
+
+ul.list li {
+    min-height: 50px;
+    width: 100%;
+    line-height: 50px;
+    padding-left:10px;
+    margin-bottom: 10px;
+    color: #333;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px rgba(44, 62, 80, .15);
+}
+ul.list li:last-child{
+  margin-bottom: 0;
+}
+
+.buttons{
+  float: right;
+  margin-right:10px;
+}
+.buttons button{
+  width: 30px;
+  height: 30px;
+  position: relative;
+  border:0;
+  outline: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background 0.3s;
+  -webkit-transition: background 0.3s;
+  -moz-transition: background 0.3s;
+  -o-transition: background 0.3s;
+}
+.buttons .del{
+  margin-right: 11px;
+  border:1px solid #e4393c;
+  color:#e4393c;
+}
+.buttons .del:hover{
+  background-color: #e4393c;
+  color:#fff;
+}
+.buttons .del::after{
+  position: absolute;
+  content: '';
+  right:-7px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #ddd;
+}
+.buttons .fin{
+  overflow: hidden;
+  border:1px solid #25b99a;
+  color:#25b99a;
+}
+.buttons .fin:hover{
+  background-color: #25b99a;
+  color:#fff;
+
+}

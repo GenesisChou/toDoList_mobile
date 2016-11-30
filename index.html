@@ -6,145 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>toDoList</title>
 </head>
-<style>
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-ul,
-li {
-    list-style: none;
-}
-
-body {
-    font-family: 'Microsoft Yahei';
-    background-color: #ddd;
-}
-
-header {
-    height: 100px;
-    padding: 25px;
-    position: relative;
-    background-color: #25b99a;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(44, 62, 80, .15);
-}
-
-header input {
-    height: 50px;
-    width: 100%;
-    text-indent: 20px;
-    padding-right: 60px;
-    color: #fff;
-    font-size: 16px;
-    border: 0;
-    outline: none;
-    border-radius: 5px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    background-color: rgba(255, 255, 255, .2);
-}
-
-header input::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, .5);
-}
-
-header button {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    right: 25px;
-    top: 25px;
-    border: 0;
-    outline: 0;
-    border-radius: 25px;
-    background-color: #fff;
-}
-
-header button:before {
-    display: block;
-    content: '+';
-    color: #333;
-    font-size: 20px;
-}
-
-.todo {
-    width: 100%;
-    padding: 15px;
-}
-
-.todo li {
-    min-height: 50px;
-    width: 100%;
-    line-height: 50px;
-    padding-left:10px;
-    margin-bottom: 10px;
-    color: #333;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 1px 2px rgba(44, 62, 80, .15);
-}
-.todo li:last-child{
-  margin-bottom: 0;
-}
-.buttons{
-  float: right;
-  padding-right:10px;
-  padding-top:10px;
-}
-.buttons button{
-  width: 30px;
-  height: 30px;
-  position: relative;
-  border:0;
-  outline: none;
-  border-radius: 50%;
-}
-.buttons .del{
-  margin-right: 11px;
-}
-.buttons .del::after{
-  position: absolute;
-  content: '';
-  right:-7px;
-  top: 0;
-  width: 1px;
-  height: 100%;
-  background-color: #ddd;
-}
-.buttons .finish{
-  overflow: hidden;
-}
-.buttons .finish::after{
-  content: '';
-  position: absolute;
-  display: block;
-  width: 30px;
-  height: 30px;
-  left: 0;
-  top: 0;
-  transform: rotate(20deg) translate(-45%,-40%);
-  border:2px solid #25b99a;
-}
-</style>
+<link rel="stylesheet" href="./src/iconfont/iconfont.css">
+<link rel="stylesheet" href="./src/style.css">
 
 <body>
     <header>
-        <input type="text" placeholder="Input something to do next...">
-        <button></button>
+        <input id='input' type="text" placeholder="Input something to do next...">
+        <button id='addItem'></button>
     </header>
-    <ul class='todo'>
-        <li>Hello world
-
-          <div class='buttons'>
-            <button class='del'></button>
-            <button class='finish'></button>
-          </div>
-        </li>
+    <h4>toDoList</h4>
+    <ul class='list toDo'>
     </ul>
+    <h4>finishList</h4>
+    <ul class='list finish'></ul>
 </body>
+<script>
+var toDoList = function() {
+    var input;
+    var btnAdd;
+    var toDoList;
+    var finishList;
+
+    (function init() {
+        btnAdd = document.querySelector('#addItem');
+        input = document.querySelector('#input');
+        toDoList = document.querySelector('.toDo');
+        finishList = document.querySelector('.finish');
+        bindEvents();
+    })();
+
+    function bindEvents() {
+        btnAdd.addEventListener('click', function() {
+            var str = input.value;
+            var newItem = document.createElement('li');
+            newItem.innerHTML = str + `<div class='buttons'>
+            <button class='del' ><i class='iconfont icon-error'></i> </button>
+            <button class='fin'><i class='iconfont icon-right'></i></button>
+          </div>`;
+            newItem.querySelector('.del').addEventListener('click', deleteItem);
+            newItem.querySelector('.fin').addEventListener('click', finishItem);
+            if(toDoList.children.length){
+                toDoList.insertBefore(newItem,toDoList.children[0]);
+            }else{
+            toDoList.appendChild(newItem);
+
+            }
+        })
+    }
+
+    function deleteItem() {
+        event.preventDefault();
+        var item = this.parentNode.parentNode;
+        toDoList.removeChild(item);
+    }
+
+    function finishItem() {
+        event.preventDefault();
+        var item = this.parentNode.parentNode;
+        var newItem = createItem(item.innerHTML);
+        finishList.appendChild(newItem);
+        toDoList.removeChild(item);
+    }
+
+    function createItem(innerHTML) {
+        var newItem = document.createElement('li');
+        newItem.innerHTML = innerHTML;
+        return newItem;
+    }
+}();
+</script>
 
 </html>
