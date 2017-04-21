@@ -1,4 +1,4 @@
-var toDoList = function() {
+(function() {
     var input;
     var btnAdd;
     var toDoList;
@@ -50,4 +50,4 @@ var toDoList = function() {
         newItem.innerHTML = innerHTML;
         return newItem;
     }
-}();
+})();
